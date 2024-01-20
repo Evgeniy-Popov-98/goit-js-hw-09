@@ -22,8 +22,6 @@
 //   }
 // }
 
-console.log(localStorage);
-
 const feedbackForm = document.querySelector('.feedback-form');
 const feedbackInput = document.querySelector('.feedback-input');
 
@@ -69,5 +67,3 @@ function showInfoUser(event) {
     feedbackForm.reset();
   }
 }
-
-console.log(localStorage);

@@ -6,6 +6,23 @@
 */
 @import url('./reset.css');
 
+/*================== MAIN ===========================*/
+.title {
+  margin-top: 20px;
+}
+.main-list {
+  margin: 40px 0 0 20px;
+}
+
+.main-item a {
+  font-size: 18px;
+}
+
+.main-item:not(:last-child) {
+  padding-bottom: 20px;
+}
+/*================== GALLERY ===========================*/
+
 .gallery {
   max-width: 1128px;
   margin: 24px auto;

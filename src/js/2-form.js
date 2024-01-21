@@ -1,33 +1,10 @@
-// const form = document.querySelector('.login-form');
-
-// form.addEventListener('submit', addInfoForm);
-
-// function addInfoForm(event) {
-//   event.preventDefault();
-
-//   const email = form.elements.email.value.trim();
-//   const password = form.elements.password.value.trim();
-
-//   if (!email || !password) {
-//     alert('All form fields must be filled in');
-//   } else {
-//     const userData = {
-//       email,
-//       password,
-//     };
-
-//     console.log(userData);
-
-//     form.reset();
-//   }
-// }
-
 const feedbackForm = document.querySelector('.feedback-form');
-const feedbackInput = document.querySelector('.feedback-input');
+const inputFormUser = document.querySelector('.feedback-input');
+const textareaFormUser = document.querySelector('.feedback-textarea');
 
 feedbackForm.addEventListener('input', addInfoUser);
 feedbackForm.addEventListener('submit', showInfoUser);
-feedbackInput.addEventListener('focus', addAttributes);
+document.addEventListener('DOMContentLoaded', addAttributes);
 
 function addAttributes() {
   const user = localStorage.getItem('feedback-form-state');
@@ -35,7 +12,8 @@ function addAttributes() {
 
   if (!newAttributes) {
   } else {
-    feedbackInput.setAttribute('placeholder', `${newAttributes.email}`);
+    inputFormUser.setAttribute('placeholder', `${newAttributes.email}`);
+    textareaFormUser.setAttribute('placeholder', `${newAttributes.message}`);
   }
 }
 
@@ -64,6 +42,8 @@ function showInfoUser(event) {
   } else {
     console.log(JSON.parse(user));
     localStorage.removeItem('feedback-form-state');
+    inputFormUser.removeAttribute('placeholder');
+    textareaFormUser.removeAttribute('placeholder');
     feedbackForm.reset();
   }
 }

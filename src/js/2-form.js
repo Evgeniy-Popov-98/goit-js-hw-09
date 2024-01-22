@@ -1,23 +1,25 @@
+const storageKey = 'feedback-form-state';
+
 const feedbackForm = document.querySelector('.feedback-form');
 const inputFormUser = document.querySelector('.feedback-input');
 const textareaFormUser = document.querySelector('.feedback-textarea');
 
 feedbackForm.addEventListener('input', addInfoUser);
 feedbackForm.addEventListener('submit', showInfoUser);
-document.addEventListener('DOMContentLoaded', addAttributes);
+document.addEventListener('DOMContentLoaded', addValue);
 
-function addAttributes() {
-  const user = localStorage.getItem('feedback-form-state');
-  const newAttributes = JSON.parse(user);
+function addValue() {
+  const user = localStorage.getItem(storageKey);
+  const newValue = JSON.parse(user);
 
-  if (!newAttributes) {
+  if (!newValue) {
   } else {
-    inputFormUser.setAttribute('placeholder', `${newAttributes.email}`);
-    textareaFormUser.setAttribute('placeholder', `${newAttributes.message}`);
+    feedbackForm.elements.email.value = newValue.email;
+    feedbackForm.elements.message.value = newValue.message;
   }
 }
 
-function addInfoUser(event) {
+function addInfoUser() {
   const email = feedbackForm.elements.email.value.trim();
   const message = feedbackForm.elements.message.value.trim();
 
@@ -26,13 +28,13 @@ function addInfoUser(event) {
     message,
   };
 
-  localStorage.setItem('feedback-form-state', JSON.stringify(user));
+  localStorage.setItem(storageKey, JSON.stringify(user));
 }
 
 function showInfoUser(event) {
   event.preventDefault();
 
-  const user = localStorage.getItem('feedback-form-state');
+  const user = localStorage.getItem(storageKey);
 
   if (
     !feedbackForm.elements.email.value.trim() ||
@@ -41,9 +43,7 @@ function showInfoUser(event) {
     alert('All form fields must be filled in');
   } else {
     console.log(JSON.parse(user));
-    localStorage.removeItem('feedback-form-state');
-    inputFormUser.removeAttribute('placeholder');
-    textareaFormUser.removeAttribute('placeholder');
+    localStorage.removeItem(storageKey);
     feedbackForm.reset();
   }
 }

@@ -81,12 +81,12 @@ function imagesTemplate(item) {
 		`;
 }
 
-function render(images) {
+function renderGallery() {
   const markup = images.map(imagesTemplate).join('');
   gallery.innerHTML = markup;
 }
 
-render(images);
+renderGallery();
 
 let galleryModalWindow = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
